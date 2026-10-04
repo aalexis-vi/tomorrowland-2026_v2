@@ -1,0 +1,31 @@
+# Configuración de despliegue en Netlify
+# Sitio estático: no hay comando de build, se publica la carpeta raíz.
+[build]
+  publish = "."
+
+# Cabeceras para todas las páginas
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # IMPORTANTE: YouTube necesita saber desde qué sitio se incrusta el video.
+    # Con "no-referrer" o "same-origin" los videos muestran el "Error 153".
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Imágenes: casi nunca cambian, se guardan en caché una semana
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Estilos y scripts: caché corta para que los cambios se vean pronto
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"

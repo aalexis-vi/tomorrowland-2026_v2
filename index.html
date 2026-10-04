@@ -3,20 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sitio web informativo sobre David Guetta: biografía, música, colaboraciones y trayectoria.">
-  <title>David Guetta | Música, trayectoria y universo electrónico</title>
+  <meta name="description" content="Página informativa sobre David Guetta: biografía, discografía, canciones, colaboraciones, videos de Tomorrowland, trayectoria y premios.">
+  <meta name="theme-color" content="#060608">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="David Guetta | El sonido que conecta al mundo">
+  <meta property="og:description" content="Biografía, discografía, videos en vivo y trayectoria del DJ y productor francés.">
+  <title>David Guetta | El sonido que conecta al mundo</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <!-- Bootstrap 5: framework responsive -->
+  <!-- Bootstrap 5: grilla, navbar responsive y modal de la galería -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero/guetta-hero.webp">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Activa las animaciones antes de pintar la página (así no hay parpadeo).
+       Si la persona pidió "reducir movimiento" en su sistema, no se activan.
+       Si main.js no llega a cargar, a los 3 s se desactivan para que nada quede oculto. -->
+  <script>
+    document.documentElement.classList.add('js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.__fxReady) document.documentElement.classList.remove('motion'); }, 3000);
+    }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <!-- Navegación Bootstrap: se convierte en menú hamburguesa en pantallas pequeñas -->
-  <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark site-nav fixed-top" aria-label="Principal">
     <div class="container">
       <a class="navbar-brand brand-mark" href="#inicio" aria-label="David Guetta, inicio">DG<span>.</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -26,196 +45,398 @@
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
           <li class="nav-item"><a class="nav-link" href="#biografia">Biografía</a></li>
-          <li class="nav-item"><a class="nav-link" href="#musica">Música</a></li>
-          <li class="nav-item"><a class="nav-link" href="#colaboraciones">Colaboraciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="#discografia">Discografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
           <li class="nav-item"><a class="nav-link" href="#trayectoria">Trayectoria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
           <li class="nav-item"><a class="nav-link nav-cta" href="#escuchar">Escuchar</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <main>
-    <!-- HERO / PORTADA -->
-    <header class="hero-section" id="inicio">
-      <div class="hero-grid"></div>
+  <main id="contenido">
+    <!-- PORTADA -->
+    <header class="hero" id="inicio">
+      <img class="hero-photo" src="img/hero/guetta-hero.webp" alt="David Guetta con los brazos en alto frente al público, en la cabina de DJ" width="1600" height="1067" fetchpriority="high">
       <div class="container hero-content">
-        <p class="eyebrow"><span class="pulse-dot"></span> DJ · PRODUCTOR · ICONO GLOBAL</p>
-        <h1>DAVID<br><span>GUETTA</span></h1>
-        <p class="hero-copy">El sonido que conecta la música electrónica con el mundo.</p>
-        <div class="d-flex flex-wrap gap-3 mt-4">
-          <a class="btn btn-neon" href="#musica">Explorar su música <span aria-hidden="true">↘</span></a>
-          <a class="btn btn-outline-light rounded-pill px-4" href="#biografia">Conocer su historia</a>
+        <h1 class="hero-title">
+          <span class="hero-line-1">David</span>
+          <span class="hero-line-2">Guetta</span>
+        </h1>
+        <p class="hero-claim">El sonido que conecta al mundo.</p>
+        <p class="hero-copy">DJ, productor y compositor francés que llevó la música electrónica a escenarios globales. Su estilo combina house, EDM y pop, y sus colaboraciones con artistas internacionales han dado algunas de las canciones más conocidas de la música dance.</p>
+        <div class="hero-actions">
+          <a class="btn btn-neon" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/@davidguetta" target="_blank" rel="noopener noreferrer">Ver en YouTube</a>
         </div>
-        <div class="hero-bottom">
-          <span>HOUSE / EDM / POP ELECTRÓNICO</span>
-          <span class="hero-line"></span>
-          <span>PARÍS, FRANCIA</span>
-        </div>
+        <a class="hero-next" href="#videos">Ver su set en Tomorrowland 2019</a>
       </div>
-      <div class="hero-orb orb-one"></div>
-      <div class="hero-orb orb-two"></div>
-      <div class="hero-stamp">FEEL<br>THE<br>BEAT</div>
     </header>
 
-    <!-- DATOS DESTACADOS: cards y grid de Bootstrap -->
-    <section class="stats-section" aria-label="Datos destacados">
+    <!-- DATOS CLAVE -->
+    <section class="facts" aria-label="Datos clave">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-6 col-lg-3">
-            <div class="stat-card"><span class="stat-number">1967</span><span class="stat-label">Año de nacimiento</span></div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="stat-card"><span class="stat-number">2002</span><span class="stat-label">Álbum debut: Just a Little More Love</span></div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="stat-card"><span class="stat-number">HOUSE</span><span class="stat-label">Raíz musical</span></div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="stat-card"><span class="stat-number">GLOBAL</span><span class="stat-label">Audiencia internacional</span></div>
-          </div>
-        </div>
+        <dl class="facts-row">
+          <div><dt>1967</dt><dd>Nace en París, Francia</dd></div>
+          <div><dt>80s</dt><dd>Primeros sets en clubes parisinos</dd></div>
+          <div><dt>7</dt><dd>Álbumes de estudio</dd></div>
+          <div><dt>2</dt><dd>Premios Grammy, según grammy.com</dd></div>
+        </dl>
       </div>
     </section>
 
     <!-- BIOGRAFÍA -->
     <section class="section-pad" id="biografia">
       <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-5">
-            <div class="portrait-panel">
-              <div class="portrait-placeholder">
-                <span class="portrait-kicker">THE STORY</span>
-                <span class="portrait-initials">DG</span>
-                <span class="portrait-caption">FROM PARIS<br>TO THE WORLD</span>
-              </div>
-              <div class="portrait-note">01 / BIOGRAFÍA</div>
-            </div>
+        <div class="row g-4 g-lg-5 align-items-start">
+          <div class="col-lg-6">
+            <figure class="portrait">
+              <img src="img/bio/guetta-retrato.webp" alt="Retrato de David Guetta con abrigo oscuro bajo un cielo de atardecer" width="1400" height="788" loading="lazy">
+            </figure>
+            <dl class="profile">
+              <div><dt>Nombre completo</dt><dd>Pierre David Guetta</dd></div>
+              <div><dt>Nacimiento</dt><dd>7 de noviembre de 1967, París</dd></div>
+              <div><dt>Nacionalidad</dt><dd>Francesa</dd></div>
+              <div><dt>Profesión</dt><dd>DJ, productor musical y compositor</dd></div>
+              <div><dt>Géneros</dt><dd>House, EDM, dance-pop y electrónica</dd></div>
+              <div><dt>Inicio de carrera</dt><dd>Década de 1980</dd></div>
+              <div><dt>Álbum debut</dt><dd><cite>Just a Little More Love</cite> (2002)</dd></div>
+            </dl>
           </div>
+          <div class="col-lg-6">
+            <h2 class="section-title">De los clubes de París al escenario mundial</h2>
+            <p class="lead-copy">Pierre David Guetta nació el 7 de noviembre de 1967 en París. Empezó como DJ en los clubes de la ciudad durante la década de 1980, donde se enamoró de la música electrónica y la cultura de club.</p>
+            <p class="body-copy">En 2002 publicó su álbum debut, <cite>Just a Little More Love</cite>. Con los años consolidó su carrera internacional gracias a producciones que mezclan la electrónica con voces y estilos del pop. Álbumes como <cite>One Love</cite> y <cite>Nothing but the Beat</cite> ampliaron su presencia en las listas y en los festivales de todo el mundo.</p>
+            <p class="body-copy">Ha trabajado con artistas como Sia, Kelly Rowland, Akon, Usher, Rihanna, Nicki Minaj, Bebe Rexha y Anne-Marie. También ha explorado otros sonidos con proyectos como Jack Back y el Future Rave, el estilo que desarrolló junto al DJ y productor MORTEN.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOGRAFÍA -->
+    <section class="section-pad section-alt" id="discografia">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Discografía</h2>
+          <p class="section-intro">Sus siete álbumes de estudio, del house de club de 2002 al dance-pop de estadio.</p>
+        </div>
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-md-4">
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/just-a-little-more-love.webp" alt="Portada del álbum Just a Little More Love" width="640" height="640" loading="lazy">
+              <h3>Just a Little More Love <span>2002</span></h3>
+              <p>El debut con el que presentó su propuesta de música house y electrónica.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/guetta-blaster.webp" alt="Portada del álbum Guetta Blaster" width="600" height="600" loading="lazy">
+              <h3>Guetta Blaster <span>2004</span></h3>
+              <p>Continúa la exploración de sonidos house y dance.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/pop-life.webp" alt="Portada del álbum Pop Life" width="640" height="640" loading="lazy">
+              <h3>Pop Life <span>2007</span></h3>
+              <p>Desarrolla su estilo electrónico y amplía sus colaboraciones.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/one-love.webp" alt="Portada del álbum One Love" width="640" height="640" loading="lazy">
+              <h3>One Love <span>2009</span></h3>
+              <p>Combina la electrónica con voces y sonidos del pop internacional.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/nothing-but-the-beat.webp" alt="Portada del álbum Nothing but the Beat" width="628" height="640" loading="lazy">
+              <h3>Nothing but the Beat <span>2011</span></h3>
+              <p>Uno de sus álbumes más reconocidos, pensado para la pista de baile.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/listen.webp" alt="Portada del álbum Listen" width="640" height="640" loading="lazy">
+              <h3>Listen <span>2014</span></h3>
+              <p>Una propuesta más amplia de producción y colaboraciones.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="album">
+              <img src="img/albums/7.webp" alt="Portada del álbum 7" width="640" height="640" loading="lazy">
+              <h3>7 <span>2018</span></h3>
+              <p>Reúne distintos estilos y facetas de su carrera.</p>
+            </article>
+          </div>
+          <div class="col">
+            <aside class="album-note">
+              <p><cite>One More Love</cite> (2010) y <cite>Nothing but the Beat 2.0</cite> (2012) son reediciones ampliadas de sus álbumes originales.</p>
+              <a class="text-link" href="https://davidguetta.com/discography/" target="_blank" rel="noopener noreferrer">Discografía oficial completa</a>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CANCIONES Y COLABORACIONES -->
+    <section class="section-pad" id="canciones">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
           <div class="col-lg-7">
-            <p class="eyebrow">01 — EL ARTISTA</p>
-            <h2 class="section-title">De París al <span>escenario mundial.</span></h2>
-            <p class="lead-copy">Pierre David Guetta nació el 7 de noviembre de 1967 en París, Francia. Es DJ, productor musical y compositor, reconocido por acercar la música house y electrónica a audiencias masivas.</p>
-            <p class="body-copy">Comenzó su camino en la escena de clubes parisinos y desarrolló un sonido que mezcla bases electrónicas, melodías pop y colaboraciones vocales. Con el paso de los años, su música ha conectado la cultura de club con la radio, los festivales y las listas internacionales.</p>
-            <p class="body-copy">Su propuesta se caracteriza por grandes estribillos, ritmos energéticos y producciones diseñadas para crear una experiencia colectiva en la pista de baile.</p>
-            <div class="bio-tags">
-              <span>DJ</span><span>Productor</span><span>Compositor</span><span>Electronic music</span>
+            <h2 class="section-title">Canciones destacadas</h2>
+            <ul class="songs">
+              <li><strong>When Love Takes Over</strong><span>con Kelly Rowland</span></li>
+              <li><strong>Sexy Bitch</strong><span>con Akon</span></li>
+              <li><strong>Memories</strong><span>con Kid Cudi</span></li>
+              <li><strong>Who's That Chick?</strong><span>con Rihanna</span></li>
+              <li><strong>Titanium</strong><span>con Sia</span></li>
+              <li><strong>Without You</strong><span>con Usher</span></li>
+              <li><strong>Play Hard</strong><span>con Ne-Yo y Akon</span></li>
+              <li><strong>Hey Mama</strong><span>con Nicki Minaj, Bebe Rexha y Afrojack</span></li>
+              <li><strong>Don't You Worry</strong><span>con Black Eyed Peas y Shakira</span></li>
+              <li><strong>I'm Good (Blue)</strong><span>con Bebe Rexha</span></li>
+              <li><strong>Baby Don't Hurt Me</strong><span>con Anne-Marie y Coi Leray</span></li>
+              <li><strong>I Don't Wanna Wait</strong><span>con OneRepublic</span></li>
+            </ul>
+          </div>
+          <div class="col-lg-5">
+            <div class="collabs">
+              <h2 class="section-title">Un sonido, muchas voces</h2>
+              <p class="body-copy">Las colaboraciones son el centro de su identidad artística. Ha trabajado con artistas del pop, el hip-hop, el dance y la electrónica:</p>
+              <ul class="chips">
+                <li>Sia</li><li>Kelly Rowland</li><li>Akon</li><li>Kid Cudi</li><li>Usher</li><li>Nicki Minaj</li><li>Bebe Rexha</li><li>Anne-Marie</li><li>Rihanna</li><li>Shakira</li><li>Afrojack</li><li>Black Eyed Peas</li><li>OneRepublic</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MÚSICA / DISCOS -->
-    <section class="section-pad music-section" id="musica">
+    <!-- VIDEOS: el reproductor carga YouTube solo cuando la persona hace clic -->
+    <section class="section-pad videos" id="videos">
       <div class="container">
-        <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
-          <div>
-            <p class="eyebrow">02 — DISCOGRAFÍA</p>
-            <h2 class="section-title">Álbumes que marcaron <span>una era.</span></h2>
-          </div>
-          <p class="section-aside">Una selección de trabajos clave<br>en su recorrido musical.</p>
+        <div class="section-head">
+          <h2 class="section-title">En vivo</h2>
+          <p class="section-intro">Sets completos y aftermovies del canal oficial. Elige uno y se reproduce aquí mismo.</p>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4 mt-2">
-          <div class="col">
-            <article class="album-card h-100">
-              <div class="album-art art-one"><span>01</span><strong>JUST A<br>LITTLE MORE<br>LOVE</strong><small>2002</small></div>
-              <div class="album-info"><h3>Just a Little More Love</h3><p>El álbum debut que presentó su propuesta house al público.</p></div>
-            </article>
-          </div>
-          <div class="col">
-            <article class="album-card h-100">
-              <div class="album-art art-two"><span>02</span><strong>POP<br>LIFE</strong><small>2007</small></div>
-              <div class="album-info"><h3>Pop Life</h3><p>Un paso hacia un sonido electrónico más amplio y accesible.</p></div>
-            </article>
-          </div>
-          <div class="col">
-            <article class="album-card h-100">
-              <div class="album-art art-three"><span>03</span><strong>ONE<br>LOVE</strong><small>2009</small></div>
-              <div class="album-info"><h3>One Love</h3><p>Un proyecto clave en la expansión global de la música dance-pop.</p></div>
-            </article>
-          </div>
-          <div class="col">
-            <article class="album-card h-100">
-              <div class="album-art art-four"><span>04</span><strong>NOTHING<br>BUT THE<br>BEAT</strong><small>2011</small></div>
-              <div class="album-info"><h3>Nothing but the Beat</h3><p>Producciones de gran escala y colaboraciones con artistas internacionales.</p></div>
-            </article>
-          </div>
-        </div>
-        <div class="text-center mt-5">
-          <a class="text-link" href="https://www.davidguetta.com/" target="_blank" rel="noopener noreferrer">Visitar el sitio oficial <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- COLABORACIONES -->
-    <section class="section-pad collab-section" id="colaboraciones">
-      <div class="container">
-        <div class="row g-5 align-items-start">
-          <div class="col-lg-5">
-            <p class="eyebrow">03 — CONEXIONES MUSICALES</p>
-            <h2 class="section-title">Un sonido.<br><span>Muchas voces.</span></h2>
-            <p class="body-copy">Las colaboraciones son una parte central de su identidad artística. Guetta ha trabajado con voces y productores de distintos géneros para cruzar fronteras entre el pop, el dance, el hip-hop y la música electrónica.</p>
-            <a class="btn btn-neon mt-3" href="#escuchar">Ir a escuchar <span aria-hidden="true">↘</span></a>
-          </div>
-          <div class="col-lg-7">
-            <div class="collab-list">
-              <div class="collab-row"><span class="collab-index">01</span><div><h3>Sia</h3><p>“Titanium” · “She Wolf (Falling to Pieces)”</p></div><span class="collab-arrow">↗</span></div>
-              <div class="collab-row"><span class="collab-index">02</span><div><h3>Usher</h3><p>“Without You”</p></div><span class="collab-arrow">↗</span></div>
-              <div class="collab-row"><span class="collab-index">03</span><div><h3>Nicki Minaj</h3><p>“Turn Me On” · “Hey Mama”</p></div><span class="collab-arrow">↗</span></div>
-              <div class="collab-row"><span class="collab-index">04</span><div><h3>F more artists</h3><p>Rihanna, Akon, Bebe Rexha, Anne-Marie y más.</p></div><span class="collab-arrow">↗</span></div>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="video-stage" id="videoStage">
+              <a class="video-facade" href="https://www.youtube.com/watch?v=rbMv6o1_3gA" target="_blank" rel="noopener noreferrer" data-video-id="rbMv6o1_3gA">
+                <img src="https://i.ytimg.com/vi/rbMv6o1_3gA/maxresdefault.jpg" alt="" width="1280" height="720">
+                <span class="play-btn" aria-hidden="true"></span>
+                <span class="visually-hidden">Reproducir: David Guetta en vivo en Tomorrowland 2019</span>
+              </a>
             </div>
-            <p class="small-note">Los títulos son ejemplos representativos, no una lista completa de colaboraciones.</p>
+            <div class="video-caption" id="videoCaption">
+              <h3>Tomorrowland 2019</h3>
+              <p>Set completo en el festival de Boom, Bélgica.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <ul class="playlist" aria-label="Lista de videos">
+              <li>
+                <button type="button" class="playlist-item" aria-current="true" data-video-id="rbMv6o1_3gA" data-title="Tomorrowland 2019" data-desc="Set completo en el festival de Boom, Bélgica.">
+                  <img src="https://i.ytimg.com/vi/rbMv6o1_3gA/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+                  <span><strong>Tomorrowland 2019</strong><small>Set completo, 57 min</small></span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="playlist-item" data-video-id="sSX9YlNuUpc" data-title="Tomorrowland 2017" data-desc="Set completo en el festival de Boom, Bélgica.">
+                  <img src="https://i.ytimg.com/vi/sSX9YlNuUpc/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+                  <span><strong>Tomorrowland 2017</strong><small>Set completo, 58 min</small></span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="playlist-item" data-video-id="rYi4CwFTxM4" data-title="The Ultimate Monolith Show" data-desc="Aftermovie oficial del show en el Stade de France, París.">
+                  <img src="https://i.ytimg.com/vi/rYi4CwFTxM4/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+                  <span><strong>The Ultimate Monolith Show</strong><small>Stade de France, aftermovie</small></span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="playlist-item" data-video-id="9X6hH-Z1Tyw" data-title="United at Home desde el Louvre" data-desc="Set benéfico transmitido desde el Museo del Louvre, en París.">
+                  <img src="https://i.ytimg.com/vi/9X6hH-Z1Tyw/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+                  <span><strong>United at Home</strong><small>Edición París, desde el Louvre</small></span>
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TRAYECTORIA -->
-    <section class="section-pad timeline-section" id="trayectoria">
+    <section class="section-pad section-alt" id="trayectoria">
       <div class="container">
-        <p class="eyebrow">04 — RECORRIDO</p>
-        <h2 class="section-title">Momentos de su <span>trayectoria.</span></h2>
-        <div class="timeline mt-5">
-          <div class="timeline-item"><span class="timeline-year">1980s–1990s</span><div><h3>Los clubes de París</h3><p>Construye su identidad como DJ dentro de la escena nocturna francesa.</p></div></div>
-          <div class="timeline-item"><span class="timeline-year">2002</span><div><h3>Primer álbum</h3><p>Lanza <em>Just a Little More Love</em>, su debut discográfico.</p></div></div>
-          <div class="timeline-item"><span class="timeline-year">2009</span><div><h3>Expansión internacional</h3><p><em>One Love</em> consolida su conexión con artistas y audiencias globales.</p></div></div>
-          <div class="timeline-item"><span class="timeline-year">2011</span><div><h3>Nothing but the Beat</h3><p>Refuerza la combinación entre producción electrónica y colaboraciones pop.</p></div></div>
-          <div class="timeline-item"><span class="timeline-year">Actualidad</span><div><h3>Festivales y nuevos sonidos</h3><p>Continúa publicando música y presentándose en escenarios internacionales. Consulta sus canales oficiales para novedades y fechas vigentes.</p></div></div>
+        <h2 class="section-title">Trayectoria</h2>
+        <ol class="timeline">
+          <li><span class="timeline-year">Años 80</span><div><h3>Los clubes de París</h3><p>Empieza a trabajar como DJ y se acerca a la cultura de la música electrónica.</p></div></li>
+          <li><span class="timeline-year">2002</span><div><h3>Álbum debut</h3><p>Publica <cite>Just a Little More Love</cite>.</p></div></li>
+          <li><span class="timeline-year">2004</span><div><h3>Guetta Blaster</h3><p>Sigue desarrollando su sonido electrónico.</p></div></li>
+          <li><span class="timeline-year">2007</span><div><h3>Pop Life</h3><p>Amplía su alcance dentro de la escena dance.</p></div></li>
+          <li><span class="timeline-year">2009</span><div><h3>One Love</h3><p>Un álbum clave en su expansión internacional y en sus colaboraciones con artistas pop.</p></div></li>
+          <li><span class="timeline-year">2011</span><div><h3>Nothing but the Beat</h3><p>Canciones con gran difusión internacional.</p></div></li>
+          <li><span class="timeline-year">2014</span><div><h3>Listen</h3><p>Combina producción electrónica con colaboraciones vocales.</p></div></li>
+          <li><span class="timeline-year">2018</span><div><h3>7</h3><p>Un proyecto que reúne distintos enfoques de su carrera.</p></div></li>
+          <li><span class="timeline-year">Hoy</span><div><h3>Escenarios de todo el mundo</h3><p>Sigue lanzando música, colaborando con otros artistas y tocando en festivales internacionales.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ESTILOS, PROYECTOS E INFLUENCIA -->
+    <section class="section-pad" id="estilos">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-5">
+            <h2 class="section-title">Estilos y proyectos</h2>
+            <p class="lead-copy">Ha ayudado a llevar la música electrónica a públicos masivos: colaboraciones con artistas pop, producciones para festivales y canciones que suenan igual en clubes, emisoras y plataformas digitales.</p>
+            <p class="body-copy">Su trayectoria muestra cómo un DJ puede crear canciones populares sin dejar una carrera centrada en la cultura de club y el espectáculo en vivo.</p>
+          </div>
+          <div class="col-lg-7">
+            <dl class="styles-list">
+              <div><dt>House</dt><dd>Una de las bases de su carrera como DJ y productor.</dd></div>
+              <div><dt>EDM</dt><dd>Producciones electrónicas pensadas para grandes escenarios y festivales.</dd></div>
+              <div><dt>Dance-pop</dt><dd>Ritmos electrónicos con estructuras y voces del pop.</dd></div>
+              <div><dt>Future Rave</dt><dd>La propuesta electrónica que desarrolló junto a MORTEN.</dd></div>
+              <div><dt>Jack Back</dt><dd>Su proyecto paralelo para explorar sonidos de club y house.</dd></div>
+            </dl>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ESCUCHAR / CTA -->
-    <section class="listen-section" id="escuchar">
+    <!-- PREMIOS -->
+    <section class="section-pad section-alt" id="premios">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-lg-5">
+            <h2 class="section-title">Premios y reconocimientos</h2>
+            <p class="body-copy">Ha recibido premios y nominaciones de la industria musical internacional. El sitio oficial de los Grammy registra 2 premios y varias nominaciones; como el conteo cambia con cada ceremonia, conviene consultarlo en <a class="inline-link" href="https://www.grammy.com/artists/david-guetta/12848/" target="_blank" rel="noopener noreferrer">grammy.com</a>.</p>
+            <p class="body-copy">También ha ocupado posiciones destacadas en el ranking DJ Mag Top 100 DJs en varias ediciones.</p>
+          </div>
+          <div class="col-lg-7">
+            <div class="awards-grid">
+              <figure class="awards-main">
+                <img src="img/premios/dj-mag-top-100-trofeo.webp" alt="David Guetta levanta un trofeo del DJ Mag Top 100 en un escenario con luces" width="1400" height="764" loading="lazy">
+                <figcaption>DJ Mag Top 100 DJs</figcaption>
+              </figure>
+              <figure>
+                <img src="img/premios/dj-mag-top-100-escenario.webp" alt="Varios DJ en el escenario de la gala DJ Mag Top 100" width="1400" height="934" loading="lazy">
+                <figcaption>Gala del DJ Mag Top 100</figcaption>
+              </figure>
+              <figure>
+                <img src="img/premios/premio-escenario.webp" alt="David Guetta con un micrófono y un galardón en la mano" width="961" height="540" loading="lazy">
+                <figcaption>Con un galardón en escena</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA: cada foto abre una vista ampliada (modal de Bootstrap) -->
+    <section class="section-pad" id="galeria">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Galería en vivo</h2>
+          <p class="section-intro">Toca una foto para verla en grande.</p>
+        </div>
+        <div class="gallery">
+          <a href="img/galeria/ultra-chispas.webp" class="gallery-item"><img src="img/galeria/ultra-chispas.webp" alt="Guetta en la cabina entre columnas de chispas en el festival Ultra" width="739" height="415" loading="lazy"></a>
+          <a href="img/galeria/escenario-azul.webp" class="gallery-item"><img src="img/galeria/escenario-azul.webp" alt="Guetta de pie sobre la cabina en un escenario iluminado de azul" width="440" height="550" loading="lazy"></a>
+          <a href="img/galeria/frente-al-publico.webp" class="gallery-item"><img src="img/galeria/frente-al-publico.webp" alt="Guetta sonríe con los brazos abiertos frente a una multitud en un festival" width="678" height="452" loading="lazy"></a>
+          <a href="img/galeria/brazos-arriba.webp" class="gallery-item"><img src="img/galeria/brazos-arriba.webp" alt="Guetta con camiseta blanca y los brazos en alto frente a una pantalla" width="860" height="484" loading="lazy"></a>
+          <a href="img/galeria/monolito-fuego.webp" class="gallery-item"><img src="img/galeria/monolito-fuego.webp" alt="Escenario con un gran monolito y columnas de fuego ante el público" width="662" height="463" loading="lazy"></a>
+          <a href="img/galeria/luces-rojas.webp" class="gallery-item"><img src="img/galeria/luces-rojas.webp" alt="Guetta señala hacia arriba bajo luces rojas y moradas" width="1200" height="900" loading="lazy"></a>
+          <a href="img/galeria/cabina-noche.webp" class="gallery-item"><img src="img/galeria/cabina-noche.webp" alt="Guetta mezclando de noche ante un estadio iluminado de morado" width="1200" height="675" loading="lazy"></a>
+          <a href="img/galeria/escenario-turquesa.webp" class="gallery-item"><img src="img/galeria/escenario-turquesa.webp" alt="Guetta con los brazos abiertos frente a una pantalla turquesa" width="739" height="415" loading="lazy"></a>
+          <a href="img/galeria/lima-2025.webp" class="gallery-item"><img src="img/galeria/lima-2025.webp" alt="Guetta señala al cielo entre humo y luces en su show de Lima 2025" width="1024" height="600" loading="lazy"></a>
+          <a href="img/galeria/chaqueta-cuero.webp" class="gallery-item"><img src="img/galeria/chaqueta-cuero.webp" alt="Guetta con chaqueta de cuero celebrando ante luces azules" width="678" height="452" loading="lazy"></a>
+          <a href="img/galeria/humo-escenario.webp" class="gallery-item"><img src="img/galeria/humo-escenario.webp" alt="Guetta con los brazos extendidos entre humo y luces cálidas" width="678" height="452" loading="lazy"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURIOSIDADES -->
+    <section class="section-pad section-alt" id="curiosidades">
+      <div class="container">
+        <h2 class="section-title">Curiosidades</h2>
+        <ul class="trivia">
+          <li>Su nombre completo es <strong>Pierre David Guetta</strong>.</li>
+          <li>Nació en <strong>París</strong>, Francia.</li>
+          <li>Empezó como DJ en clubes durante la <strong>década de 1980</strong>.</li>
+          <li>Su álbum debut, <cite>Just a Little More Love</cite>, salió en <strong>2002</strong>.</li>
+          <li><strong>Titanium</strong>, junto a Sia, es una de sus colaboraciones más conocidas.</li>
+          <li>Ha trabajado con artistas de la electrónica, el pop, el hip-hop y otros géneros.</li>
+          <li>Explora otros sonidos con sus proyectos <strong>Jack Back</strong> y <strong>Future Rave</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ESCUCHAR -->
+    <section class="listen" id="escuchar">
       <div class="container">
         <div class="listen-panel">
           <div>
-            <p class="eyebrow">05 — SUBE EL VOLUMEN</p>
-            <h2>La música se<br><span>vive en movimiento.</span></h2>
-            <p>Explora sus lanzamientos, sesiones y próximos anuncios desde plataformas oficiales.</p>
+            <h2>Sube el volumen</h2>
+            <p>Escucha sus lanzamientos y sigue sus próximos anuncios en las plataformas oficiales.</p>
           </div>
           <div class="listen-actions">
-            <a class="btn btn-neon btn-lg" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Escuchar en Spotify ↗</a>
-            <a class="btn btn-outline-light btn-lg" href="https://www.youtube.com/@davidguetta" target="_blank" rel="noopener noreferrer">Ver en YouTube ↗</a>
-            <a class="btn btn-outline-light btn-lg" href="https://www.davidguetta.com/" target="_blank" rel="noopener noreferrer">Sitio oficial ↗</a>
+            <a class="btn btn-neon btn-lg" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a class="btn btn-ghost btn-lg" href="https://www.youtube.com/@davidguetta" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a class="btn btn-ghost btn-lg" href="https://music.apple.com/us/artist/david-guetta/5557599" target="_blank" rel="noopener noreferrer">Apple Music</a>
+            <a class="btn btn-ghost btn-lg" href="https://davidguetta.com/" target="_blank" rel="noopener noreferrer">Sitio oficial</a>
           </div>
-          <div class="sound-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-      <a class="brand-mark" href="#inicio">DG<span>.</span></a>
-      <p class="mb-0">Proyecto web educativo y no oficial sobre David Guetta.</p>
-      <a href="#inicio" class="back-top">VOLVER ARRIBA ↑</a>
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-md-5">
+          <img class="footer-logo" src="img/brand/logo.webp" alt="Logo de David Guetta" width="400" height="400" loading="lazy">
+          <p class="footer-tagline">David Guetta — The sound of a generation</p>
+          <p class="footer-note">Página informativa de carácter académico y no oficial. Para información actualizada sobre lanzamientos, fechas y reconocimientos, consulta los canales oficiales del artista.</p>
+        </div>
+        <div class="col-md-7">
+          <h2 class="footer-heading">Fuentes de consulta</h2>
+          <ul class="sources">
+            <li><a href="https://davidguetta.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de David Guetta</a></li>
+            <li><a href="https://davidguetta.com/discography/" target="_blank" rel="noopener noreferrer">Discografía oficial</a></li>
+            <li><a href="https://www.grammy.com/artists/david-guetta/12848/" target="_blank" rel="noopener noreferrer">Perfil en los premios Grammy</a></li>
+            <li><a href="https://music.apple.com/us/artist/david-guetta/5557599" target="_blank" rel="noopener noreferrer">Perfil en Apple Music</a></li>
+            <li><a href="https://www.officialcharts.com/artist/816/david-guetta/" target="_blank" rel="noopener noreferrer">Historial en Official Charts</a></li>
+          </ul>
+          <a href="#inicio" class="back-top">Volver arriba</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JavaScript: activa el menú responsive -->
+  <!-- Vista ampliada de la galería -->
+  <div class="modal fade lightbox" id="lightbox" tabindex="-1" aria-label="Foto ampliada" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <button type="button" class="lightbox-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <figure class="mb-0">
+          <img id="lightboxImg" alt="">
+          <figcaption id="lightboxCaption"></figcaption>
+        </figure>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">‹</button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Foto siguiente">›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScript: menú responsive y modal -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

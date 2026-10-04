@@ -1,0 +1,5 @@
+# Material original (zip y txt): no se publica
+material/
+
+# Capturas de las pruebas con Playwright
+.playwright-mcp/
