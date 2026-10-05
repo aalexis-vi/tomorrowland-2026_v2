@@ -285,7 +285,8 @@ cite { font-style: italic; }
 /* Cada foto se muestra completa (contain) sobre una copia desenfocada de sí misma,
    así las verticales y las horizontales conviven sin recortes */
 .photo-carousel { position: relative; background: #000; box-shadow: 0 0 0 1px var(--line); }
-.photo-carousel .carousel-item { margin: 0; aspect-ratio: 16 / 9; overflow: hidden; isolation: isolate; }
+/* margin-right: -100% es el truco de Bootstrap para superponer la foto que sale y la que entra */
+.photo-carousel .carousel-item { margin: 0 -100% 0 0; aspect-ratio: 16 / 9; overflow: hidden; isolation: isolate; }
 .carousel-bg {
   position: absolute; inset: -30px; z-index: -1;
   background: center / cover no-repeat; filter: blur(24px) brightness(.45);
