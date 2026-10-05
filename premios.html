@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Premios Grammy, ranking DJ Mag Top 100 y otros reconocimientos de David Guetta.">
+  <meta name="theme-color" content="#060608">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Premios y reconocimientos | David Guetta">
+  <meta property="og:description" content="Premios Grammy, ranking DJ Mag Top 100 y otros reconocimientos de David Guetta.">
+  <title>Premios y reconocimientos | David Guetta</title>
+  <link rel="icon" href="img/brand/logo.webp" type="image/webp">
+
+  <!-- Bootstrap 5: grilla, navbar responsive y carrusel de fotos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Activa las animaciones antes de pintar la página (así no hay parpadeo).
+       Si la persona pidió "reducir movimiento" en su sistema, no se activan.
+       Si main.js no llega a cargar, a los 3 s se desactivan para que nada quede oculto. -->
+  <script>
+    document.documentElement.classList.add('js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.__fxReady) document.documentElement.classList.remove('motion'); }, 3000);
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Navegación Bootstrap: se convierte en menú hamburguesa en pantallas pequeñas -->
+  <nav class="navbar navbar-expand-lg navbar-dark site-nav fixed-top" aria-label="Principal">
+    <div class="container">
+      <a class="navbar-brand brand-mark" href="index.html" aria-label="David Guetta, inicio">
+        <span class="brand-logo" aria-hidden="true"></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Abrir o cerrar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="index.html#biografia">Biografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#discografia">Discografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#galeria">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#videos">En vivo</a></li>
+          <li class="nav-item"><a class="nav-link" href="trayectoria.html">Trayectoria</a></li>
+          <li class="nav-item"><a class="nav-link" href="premios.html" aria-current="page">Premios</a></li>
+          <li class="nav-item"><a class="nav-link nav-cta" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Escuchar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="contenido">
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header class="page-hero" id="inicio">
+      <img class="page-hero-photo" src="img/premios/dj-mag-top-100-trofeo.webp" alt="David Guetta levanta un trofeo del DJ Mag Top 100 en un escenario con luces" fetchpriority="high">
+      <div class="container page-hero-content">
+        <a class="page-back" href="index.html">Volver al inicio</a>
+        <p class="page-kicker">Reconocimientos</p>
+        <h1 class="page-title">Premios y reconocimientos</h1>
+        <p class="page-intro">Premios Grammy, el ranking DJ Mag Top 100 y los galardones de una carrera que marcó la música dance.</p>
+      </div>
+    </header>
+
+    <!-- PREMIOS -->
+    <section class="section-pad" id="reconocimientos">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-lg-5">
+            <h2 class="section-title">Grammy y DJ Mag</h2>
+            <p class="body-copy">Ha recibido premios y nominaciones de la industria musical internacional. El sitio oficial de los Grammy registra 2 premios y varias nominaciones; como el conteo cambia con cada ceremonia, conviene consultarlo en <a class="inline-link" href="https://www.grammy.com/artists/david-guetta/12848/" target="_blank" rel="noopener noreferrer">grammy.com</a>.</p>
+            <p class="body-copy">También ha ocupado posiciones destacadas en el ranking DJ Mag Top 100 DJs en varias ediciones.</p>
+          </div>
+          <div class="col-lg-7">
+            <div class="awards-grid">
+              <figure class="awards-main">
+                <img src="img/premios/dj-mag-top-100-trofeo.webp" alt="David Guetta levanta un trofeo del DJ Mag Top 100 en un escenario con luces" width="1400" height="764" loading="lazy">
+                <figcaption>DJ Mag Top 100 DJs</figcaption>
+              </figure>
+              <figure>
+                <img src="img/premios/dj-mag-top-100-escenario.webp" alt="Varios DJ en el escenario de la gala DJ Mag Top 100" width="1400" height="934" loading="lazy">
+                <figcaption>Gala del DJ Mag Top 100</figcaption>
+              </figure>
+              <figure>
+                <img src="img/premios/premio-escenario.webp" alt="David Guetta con un micrófono y un galardón en la mano" width="961" height="540" loading="lazy">
+                <figcaption>Con un galardón en escena</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCUCHAR -->
+    <section class="listen section-alt" id="escuchar">
+      <div class="container">
+        <div class="listen-panel">
+          <div>
+            <h2>Sube el volumen</h2>
+            <p>Escucha sus lanzamientos y sigue sus próximos anuncios en las plataformas oficiales.</p>
+          </div>
+          <div class="listen-actions">
+            <a class="btn btn-neon btn-lg" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a class="btn btn-ghost btn-lg" href="https://www.youtube.com/@davidguetta" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a class="btn btn-ghost btn-lg" href="https://music.apple.com/us/artist/david-guetta/5557599" target="_blank" rel="noopener noreferrer">Apple Music</a>
+            <a class="btn btn-ghost btn-lg" href="https://davidguetta.com/" target="_blank" rel="noopener noreferrer">Sitio oficial</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-md-5">
+          <img class="footer-logo" src="img/brand/logo.webp" alt="Logo de David Guetta" width="400" height="400" loading="lazy">
+          <p class="footer-tagline">David Guetta — The sound of a generation</p>
+          <p class="footer-note">Página informativa de carácter académico y no oficial. Para información actualizada sobre lanzamientos, fechas y reconocimientos, consulta los canales oficiales del artista.</p>
+        </div>
+        <div class="col-md-7">
+          <h2 class="footer-heading">Fuentes de consulta</h2>
+          <ul class="sources">
+            <li><a href="https://davidguetta.com/" target="_blank" rel="noopener noreferrer">Sitio oficial de David Guetta</a></li>
+            <li><a href="https://davidguetta.com/discography/" target="_blank" rel="noopener noreferrer">Discografía oficial</a></li>
+            <li><a href="https://www.grammy.com/artists/david-guetta/12848/" target="_blank" rel="noopener noreferrer">Perfil en los premios Grammy</a></li>
+            <li><a href="https://music.apple.com/us/artist/david-guetta/5557599" target="_blank" rel="noopener noreferrer">Perfil en Apple Music</a></li>
+            <li><a href="https://www.officialcharts.com/artist/816/david-guetta/" target="_blank" rel="noopener noreferrer">Historial en Official Charts</a></li>
+          </ul>
+          <a href="#inicio" class="back-top">Volver arriba</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JavaScript: menú responsive y carrusel -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -2,12 +2,14 @@ PROYECTO WEB: DAVID GUETTA
 ==========================
 
 Estructura:
-- index.html          Página completa (todas las secciones)
+- index.html          Inicio: portada, biografía, discografía, canciones,
+                      galería (carrusel) y videos En vivo
+- trayectoria.html    Línea de tiempo, estilos y proyectos, curiosidades
+- premios.html        Premios y reconocimientos
 - css/styles.css      Estilos propios (Bootstrap se carga por CDN)
-- js/main.js          Reproductor de videos, galería ampliada y menú móvil
+- js/main.js          Reproductor de videos, menú móvil y efectos de scroll (las 3 páginas)
 - img/                Imágenes optimizadas en WebP
     hero/ bio/ albums/ premios/ galeria/ brand/
-- favicon.svg         Icono de la pestaña
 - netlify.toml        Configuración de despliegue en Netlify
 - material/           Material original (zip, txt). NO se sube a git.
 
@@ -35,7 +37,7 @@ Videos:
 Bootstrap incluido:
 - Navbar responsive con menú hamburguesa.
 - Grid con container, row, col-* y row-cols-* con breakpoints.
-- Modal para la galería de fotos.
+- Carrusel para la galería de fotos (flechas, puntos y deslizar con el dedo).
 - Bootstrap 5.3.3 por CDN.
 
 Nota:

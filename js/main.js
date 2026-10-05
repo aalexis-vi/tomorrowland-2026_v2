@@ -2,7 +2,7 @@
    DAVID GUETTA — interacciones
    1. Reproductor de videos: muestra la miniatura y carga YouTube
       solo al hacer clic (la página carga más rápido).
-   2. Galería: abre cada foto en grande dentro de un modal.
+   2. Galería: es un carrusel de Bootstrap (no necesita código propio).
    3. Menú móvil: se cierra al elegir una sección.
    4. Efectos de scroll: barra de progreso, navegación de vidrio,
       portada con parallax, línea de tiempo y entrada en foco.
@@ -98,40 +98,6 @@
     });
   }
 
-  /* ---------- 2. Galería ---------- */
-  var modalEl = document.getElementById('lightbox');
-  var photos = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
-
-  if (modalEl && window.bootstrap && photos.length) {
-    var modal = new bootstrap.Modal(modalEl);
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCaption');
-    var current = 0;
-
-    function show(index) {
-      current = (index + photos.length) % photos.length;
-      var thumb = photos[current].querySelector('img');
-      img.src = photos[current].getAttribute('href');
-      img.alt = thumb.alt;
-      cap.textContent = thumb.alt;
-    }
-
-    photos.forEach(function (link, index) {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        show(index);
-        modal.show();
-      });
-    });
-
-    modalEl.querySelector('.lightbox-prev').addEventListener('click', function () { show(current - 1); });
-    modalEl.querySelector('.lightbox-next').addEventListener('click', function () { show(current + 1); });
-    modalEl.addEventListener('keydown', function (event) {
-      if (event.key === 'ArrowLeft') show(current - 1);
-      if (event.key === 'ArrowRight') show(current + 1);
-    });
-  }
-
   /* ---------- 3. Menú móvil ---------- */
   var nav = document.getElementById('mainNav');
   if (nav && window.bootstrap) {
@@ -195,9 +161,9 @@
   if (motion) {
     var selector = [
       '.facts-row > div', '.section-title', '.section-intro', '.lead-copy', '.body-copy',
-      '.portrait', '.profile', '#discografia .row > .col', '.songs li', '.collabs',
+      '.page-intro', '.portrait', '.profile', '#discografia .row > .col', '.songs li', '.collabs',
       '.video-stage', '.video-caption', '.playlist li', '.styles-list > div',
-      '.awards-grid figure', '.gallery-item', '.trivia li', '.listen-panel', '.site-footer .row > div'
+      '.awards-grid figure', '.photo-carousel', '.trivia li', '.listen-panel', '.site-footer .row > div'
     ].join(',');
     var perParent = new Map();
 
