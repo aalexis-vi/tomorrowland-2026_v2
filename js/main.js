@@ -2,7 +2,7 @@
    DAVID GUETTA — interacciones
    1. Reproductor de videos: muestra la miniatura y carga YouTube
       solo al hacer clic (la página carga más rápido).
-   2. Galería: es un carrusel de Bootstrap (no necesita código propio).
+   2. Galería: carrusel de Bootstrap; aquí solo se predecodifican sus fotos.
    3. Menú móvil: se cierra al elegir una sección.
    4. Efectos de scroll: barra de progreso, navegación de vidrio,
       portada con parallax, línea de tiempo y entrada en foco.
@@ -97,6 +97,14 @@
       });
     });
   }
+
+  // Carrusel: se decodifican todas las fotos al terminar de cargar la página,
+  // así cada una aparece completa en cuanto le toca, sin cuadro vacío
+  window.addEventListener('load', function () {
+    document.querySelectorAll('.photo-carousel img').forEach(function (photo) {
+      if (photo.decode) photo.decode().catch(function () {});
+    });
+  });
 
   /* ---------- 3. Menú móvil ---------- */
   var nav = document.getElementById('mainNav');

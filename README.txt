@@ -21,6 +21,11 @@ Publicar en Netlify:
   En ese caso borra o mueve antes la carpeta material/, porque
   arrastrando la carpeta se publica todo lo que contiene.
 
+Caché:
+- Netlify guarda css/ y js/ en caché una hora. Por eso las 3 páginas cargan
+  styles.css?v=3 y main.js?v=3: al cambiar el CSS o el JS, sube ese número
+  en las 3 páginas para que los visitantes reciban la versión nueva al momento.
+
 Videos:
 - Se reproducen dentro de la página con la API oficial de YouTube
   (youtube-nocookie.com). Solo se cargan cuando alguien da clic.
