@@ -27,7 +27,7 @@ Publicar en Netlify:
 
 Caché:
 - Netlify guarda css/ y js/ en caché una hora. Por eso las 5 páginas cargan
-  styles.css?v=5 y main.js?v=5: al cambiar el CSS o el JS, sube ese número
+  styles.css?v=6 y main.js?v=6: al cambiar el CSS o el JS, sube ese número
   en las 5 páginas para que los visitantes reciban la versión nueva al momento.
 
 Videos:

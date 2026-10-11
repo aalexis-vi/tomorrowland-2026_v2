@@ -499,20 +499,24 @@ cite { font-style: italic; }
 .showcase-modal { --bs-modal-bg: var(--panel); --bs-modal-border-color: rgba(197, 255, 50, .35); --bs-modal-border-radius: 0; }
 .modal-backdrop { --bs-backdrop-bg: #000; --bs-backdrop-opacity: .82; }
 .modal-backdrop.show { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.showcase-modal .modal-content { overflow: hidden; box-shadow: 0 40px 120px -30px rgba(140, 77, 255, .6); }
+/* En celular la ventana ocupa la pantalla con altura fija: el contenido se desplaza
+   dentro de ella en vez de encoger la caja de la foto (que la recortaba) */
+.showcase-modal .modal-content { overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 40px 120px -30px rgba(140, 77, 255, .6); }
+/* Pegajosa: sigue visible en la esquina aunque se desplace el contenido de la ventana */
 .showcase-close {
-  position: absolute; top: .8rem; right: .8rem; z-index: 3; width: 2.8rem; height: 2.8rem;
+  position: sticky; top: .8rem; align-self: flex-end; flex-shrink: 0; margin: .8rem .8rem -3.6rem 0; z-index: 3; width: 2.8rem; height: 2.8rem;
   border: 0; border-radius: 50%; background: rgba(6, 6, 8, .7); color: #fff; font-size: 1.8rem; line-height: 1;
   transition: background-color .2s ease, color .2s ease, transform .3s ease;
 }
 .showcase-close:hover, .showcase-close:focus-visible { background: var(--neon); color: #000; transform: rotate(90deg); }
-.showcase-grid { display: grid; grid-template-columns: 1.1fr 1fr; min-height: 34rem; }
+.showcase-grid { display: grid; grid-template-columns: 1.1fr 1fr; min-height: 34rem; flex-shrink: 0; }
 .showcase-media {
   display: grid; place-items: center; padding: 2.5rem; overflow: hidden;
   background: radial-gradient(circle at 50% 45%, rgba(140, 77, 255, .35), transparent 65%), #0b0c12;
 }
 .showcase-media img { width: 100%; max-height: 30rem; object-fit: contain; transition: scale .5s cubic-bezier(.2, .7, .1, 1); }
-.showcase-media:hover img { scale: 1.05; }
+/* Solo con mouse: en pantallas táctiles el toque deja el hover activo y la foto quedaba agrandada */
+@media (hover: hover) { .showcase-media:hover img { scale: 1.05; } }
 .showcase-body { display: flex; flex-direction: column; align-items: flex-start; padding: 3rem 2.5rem 2rem; }
 .showcase-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: .92; margin-bottom: 1rem; }
 .showcase-title span { color: var(--neon); }
@@ -617,6 +621,18 @@ html.motion [data-reveal="mask"].is-in > img, html.motion [data-reveal="mask"].i
   .showcase-media img { max-height: 42vh; }
   .showcase-body { padding: 1.8rem 1.5rem 1.5rem; }
   .product-wide .product-media { height: auto; min-height: 0; aspect-ratio: 2 / 1; }
+}
+
+/* Celular en horizontal: foto y texto lado a lado para que la foto no quede diminuta */
+@media (max-width: 991.98px) and (max-height: 540px) and (orientation: landscape) {
+  .showcase-modal .modal-dialog { max-width: calc(100vw - 2rem); margin-top: 1rem; margin-bottom: 1rem; }
+  /* La ventana mide lo que la pantalla y el texto se desplaza dentro; la foto queda fija */
+  .showcase-modal .modal-content { max-height: calc(100svh - 2rem); }
+  .showcase-grid { grid-template-columns: 1fr 1fr; }
+  .showcase-media { padding: 1.5rem; position: sticky; top: 0; align-self: start; height: calc(100svh - 2rem); }
+  .showcase-media img { max-height: calc(100svh - 5rem); }
+  .showcase-body { padding: 1.6rem 1.5rem 1.4rem; }
+  .showcase-title { font-size: 2rem; }
 }
 
 /* ---------- Móvil ---------- */

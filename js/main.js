@@ -144,20 +144,33 @@
       link.href = card.dataset.link;
       link.textContent = card.dataset.linkLabel;
       sc('showcaseCount').textContent = (current + 1) + ' / ' + cards.length;
+      toTop();
+    };
+
+    // En celular el contenido se desplaza: cada álbum o producto empieza arriba, con la foto a la vista
+    var toTop = function () {
+      showcaseEl.querySelector('.modal-content').scrollTop = 0;
+      showcaseEl.scrollTop = 0;
+    };
+
+    // Bootstrap muestra la ventana unos cuadros después de show(); mientras está oculta
+    // el navegador ignora scrollTop y no se pueden medir sus medidas
+    var whenVisible = function (fn) {
+      var tries = 0;
+      (function wait() {
+        if (scImg.getBoundingClientRect().width) fn();
+        else if (tries++ < 60) requestAnimationFrame(wait);
+      })();
     };
 
     // La foto "crece" desde la tarjeta hasta su lugar en la ventana
     var growFrom = function (card) {
       var from = card.querySelector('img').getBoundingClientRect();
-      var tries = 0;
-      (function wait() {
-        var to = scImg.getBoundingClientRect();
-        if (!to.width) { if (tries++ < 30) requestAnimationFrame(wait); return; }
-        scImg.animate([
-          { transform: 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + from.width / to.width + ')', opacity: .6 },
-          { transform: 'none', opacity: 1 }
-        ], { duration: 520, easing: 'cubic-bezier(.2, .7, .1, 1)' });
-      })();
+      var to = scImg.getBoundingClientRect();
+      scImg.animate([
+        { transform: 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + from.width / to.width + ')', opacity: .6 },
+        { transform: 'none', opacity: 1 }
+      ], { duration: 520, easing: 'cubic-bezier(.2, .7, .1, 1)' });
     };
 
     var step = function (dir) {
@@ -174,7 +187,10 @@
         lastTrigger = this;
         fill(i);
         showcase.show();
-        if (animate) growFrom(card);
+        whenVisible(function () {
+          toTop();
+          if (animate) growFrom(card);
+        });
       });
     });
     showcaseEl.querySelectorAll('.showcase-arrow').forEach(function (btn) {
