@@ -3,6 +3,7 @@
    1. Reproductor de videos: muestra la miniatura y carga YouTube
       solo al hacer clic (la página carga más rápido).
    2. Galería: carrusel de Bootstrap; aquí solo se predecodifican sus fotos.
+      Ventana de detalle para los álbumes y los productos.
    3. Menú móvil: se cierra al elegir una sección.
    4. Efectos de scroll: barra de progreso, navegación de vidrio,
       portada con parallax, línea de tiempo, entrada en foco y
@@ -106,6 +107,97 @@
       if (photo.decode) photo.decode().catch(function () {});
     });
   });
+
+  /* ---------- 2b. Ventana de detalle (álbumes y productos) ----------
+     Cada tarjeta con data-showcase abre el mismo modal de Bootstrap, que se llena
+     con su foto, título, texto y la lista de data-list. Las flechas (o el teclado
+     y el deslizamiento en celular) pasan a la tarjeta siguiente sin cerrar. */
+  var showcaseEl = document.getElementById('showcaseModal');
+  var cards = document.querySelectorAll('[data-showcase]');
+  if (showcaseEl && cards.length && window.bootstrap) {
+    var showcase = bootstrap.Modal.getOrCreateInstance(showcaseEl);
+    var sc = function (id) { return document.getElementById(id); };
+    var scImg = sc('showcaseImg');
+    var current = 0;
+    var lastTrigger = null;
+    var animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'animate' in scImg;
+
+    var fill = function (i) {
+      current = (i + cards.length) % cards.length;
+      var card = cards[current];
+      var img = card.querySelector('img');
+      var title = card.querySelector('.card-trigger');
+      scImg.src = img.getAttribute('src');
+      scImg.alt = img.alt;
+      sc('showcaseKicker').textContent = card.dataset.kicker || '';
+      sc('showcaseTitle').innerHTML = title.innerHTML;
+      sc('showcaseText').textContent = card.querySelector('p').textContent;
+      sc('showcaseListTitle').textContent = card.dataset.listTitle || '';
+      var list = sc('showcaseListItems');
+      list.replaceChildren();
+      (card.dataset.list || '').split('|').filter(Boolean).forEach(function (text) {
+        var li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+      });
+      var link = sc('showcaseLink');
+      link.href = card.dataset.link;
+      link.textContent = card.dataset.linkLabel;
+      sc('showcaseCount').textContent = (current + 1) + ' / ' + cards.length;
+    };
+
+    // La foto "crece" desde la tarjeta hasta su lugar en la ventana
+    var growFrom = function (card) {
+      var from = card.querySelector('img').getBoundingClientRect();
+      var tries = 0;
+      (function wait() {
+        var to = scImg.getBoundingClientRect();
+        if (!to.width) { if (tries++ < 30) requestAnimationFrame(wait); return; }
+        scImg.animate([
+          { transform: 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + from.width / to.width + ')', opacity: .6 },
+          { transform: 'none', opacity: 1 }
+        ], { duration: 520, easing: 'cubic-bezier(.2, .7, .1, 1)' });
+      })();
+    };
+
+    var step = function (dir) {
+      fill(current + dir);
+      if (animate) {
+        scImg.animate([{ opacity: 0, transform: 'translateX(' + dir * 40 + 'px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 380, easing: 'cubic-bezier(.2, .7, .1, 1)' });
+        showcaseEl.querySelector('.showcase-body').animate([{ opacity: 0 }, { opacity: 1 }], { duration: 380 });
+      }
+    };
+
+    cards.forEach(function (card, i) {
+      card.querySelector('.card-trigger').addEventListener('click', function () {
+        lastTrigger = this;
+        fill(i);
+        showcase.show();
+        if (animate) growFrom(card);
+      });
+    });
+    showcaseEl.querySelectorAll('.showcase-arrow').forEach(function (btn) {
+      btn.addEventListener('click', function () { step(Number(btn.dataset.step)); });
+    });
+    showcaseEl.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight') step(1);
+      if (event.key === 'ArrowLeft') step(-1);
+    });
+    var touchX = null;
+    showcaseEl.addEventListener('touchstart', function (event) { touchX = event.touches[0].clientX; }, { passive: true });
+    showcaseEl.addEventListener('touchend', function (event) {
+      if (touchX === null) return;
+      var dx = event.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    });
+    // Al cerrar, el foco vuelve a la tarjeta que se mostraba al final
+    showcaseEl.addEventListener('hidden.bs.modal', function () {
+      var trigger = cards[current].querySelector('.card-trigger') || lastTrigger;
+      if (trigger) trigger.focus({ preventScroll: true });
+    });
+  }
 
   /* ---------- 3. Menú móvil ---------- */
   var nav = document.getElementById('mainNav');

@@ -469,6 +469,68 @@ cite { font-style: italic; }
 .btn-dark-solid:hover, .btn-dark-solid:focus-visible { background: transparent; color: #000; }
 .merch-claim :focus-visible { outline-color: #000; }
 
+/* ---------- Tarjetas que abren la ventana de detalle ----------
+   El título es un botón y su ::after cubre toda la tarjeta, así que se puede
+   hacer clic en cualquier parte y el lector de pantalla anuncia un solo botón. */
+[data-showcase] { position: relative; cursor: pointer; }
+.card-trigger {
+  all: unset; cursor: pointer; font: inherit; color: inherit;
+}
+.card-trigger::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.card-trigger:focus-visible { outline: none; }
+[data-showcase]:has(.card-trigger:focus-visible) { outline: 2px solid var(--neon); outline-offset: 4px; }
+/* Señal de "ver más" que aparece al pasar el cursor */
+[data-showcase] .product-media, .album { position: relative; }
+.album::before, [data-showcase] .product-media::after {
+  content: "+"; position: absolute; z-index: 1; display: grid; place-items: center;
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--neon); color: #000;
+  font-size: 1.6rem; font-weight: 700; line-height: 1;
+  opacity: 0; transform: scale(.6); transition: opacity .3s ease, transform .3s cubic-bezier(.2, .7, .1, 1);
+  pointer-events: none;
+}
+.album::before { top: .7rem; right: .7rem; }
+[data-showcase] .product-media::after { top: 1rem; right: 1rem; }
+.album:hover::before, [data-showcase]:hover .product-media::after,
+.album:has(.card-trigger:focus-visible)::before, [data-showcase]:has(.card-trigger:focus-visible) .product-media::after { opacity: 1; transform: none; }
+/* En pantallas táctiles no hay cursor: el "+" se ve siempre */
+@media (hover: none) { .album::before, [data-showcase] .product-media::after { opacity: .9; transform: none; } }
+
+/* ---------- Ventana de detalle ---------- */
+.showcase-modal { --bs-modal-bg: var(--panel); --bs-modal-border-color: rgba(197, 255, 50, .35); --bs-modal-border-radius: 0; }
+.modal-backdrop { --bs-backdrop-bg: #000; --bs-backdrop-opacity: .82; }
+.modal-backdrop.show { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.showcase-modal .modal-content { overflow: hidden; box-shadow: 0 40px 120px -30px rgba(140, 77, 255, .6); }
+.showcase-close {
+  position: absolute; top: .8rem; right: .8rem; z-index: 3; width: 2.8rem; height: 2.8rem;
+  border: 0; border-radius: 50%; background: rgba(6, 6, 8, .7); color: #fff; font-size: 1.8rem; line-height: 1;
+  transition: background-color .2s ease, color .2s ease, transform .3s ease;
+}
+.showcase-close:hover, .showcase-close:focus-visible { background: var(--neon); color: #000; transform: rotate(90deg); }
+.showcase-grid { display: grid; grid-template-columns: 1.1fr 1fr; min-height: 34rem; }
+.showcase-media {
+  display: grid; place-items: center; padding: 2.5rem; overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, rgba(140, 77, 255, .35), transparent 65%), #0b0c12;
+}
+.showcase-media img { width: 100%; max-height: 30rem; object-fit: contain; transition: scale .5s cubic-bezier(.2, .7, .1, 1); }
+.showcase-media:hover img { scale: 1.05; }
+.showcase-body { display: flex; flex-direction: column; align-items: flex-start; padding: 3rem 2.5rem 2rem; }
+.showcase-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: .92; margin-bottom: 1rem; }
+.showcase-title span { color: var(--neon); }
+.showcase-text { color: #d6d7df; margin-bottom: 1.4rem; }
+.showcase-list { width: 100%; margin-bottom: 1.8rem; }
+.showcase-list h3 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: .6rem; }
+.showcase-list ol { list-style: none; counter-reset: item; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.showcase-list li { counter-increment: item; display: flex; gap: .9rem; padding: .55rem 0; border-bottom: 1px solid var(--line); font-weight: 600; }
+.showcase-list li::before { content: counter(item, decimal-leading-zero); color: var(--neon); font-family: var(--display); font-weight: 800; }
+.showcase-nav { display: flex; align-items: center; gap: 1rem; margin-top: auto; padding-top: 1.8rem; }
+.showcase-arrow {
+  width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .35);
+  background: transparent; color: #fff; font-size: 1.7rem; line-height: 1; padding-bottom: .2rem;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.showcase-arrow:hover, .showcase-arrow:focus-visible { background: var(--neon); border-color: var(--neon); color: #000; }
+.showcase-count { font-family: var(--display); font-weight: 800; letter-spacing: .08em; color: var(--muted); min-width: 3.5rem; text-align: center; }
+
 /* ---------- Contacto ---------- */
 .map-frame {
   position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--panel);
@@ -550,6 +612,10 @@ html.motion [data-reveal="mask"].is-in > img, html.motion [data-reveal="mask"].i
   .merch-hero { min-height: 0; }
   .merch-hero-art { max-width: 34rem; margin: 0 auto; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .showcase-grid { grid-template-columns: 1fr; min-height: 0; }
+  .showcase-media { padding: 2rem 1.5rem 1.5rem; }
+  .showcase-media img { max-height: 42vh; }
+  .showcase-body { padding: 1.8rem 1.5rem 1.5rem; }
   .product-wide .product-media { height: auto; min-height: 0; aspect-ratio: 2 / 1; }
 }
 
@@ -599,6 +665,8 @@ html.motion [data-reveal="mask"].is-in > img, html.motion [data-reveal="mask"].i
   .album-note { aspect-ratio: auto; }
   .listen-actions { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: 1fr; }
+  .showcase-media img { max-height: 38vh; }
+  .showcase-nav { width: 100%; justify-content: space-between; }
   .product-wide { grid-column: auto; }
   .product h3 { font-size: 1.5rem; }
   .merch-claim { padding: 3.5rem 0; }
