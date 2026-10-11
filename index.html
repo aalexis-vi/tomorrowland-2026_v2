@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="img/hero/guetta-hero.webp">
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="preload" as="image" href="img/hero/guetta-hero.webp" imagesrcset="img/hero/guetta-hero-960.webp 960w, img/hero/guetta-hero-1440.webp 1440w, img/hero/guetta-hero.webp 1777w" imagesizes="100vw">
+  <link rel="stylesheet" href="css/styles.css?v=4">
   <!-- Activa las animaciones antes de pintar la página (así no hay parpadeo).
        Si la persona pidió "reducir movimiento" en su sistema, no se activan.
        Si main.js no llega a cargar, a los 3 s se desactivan para que nada quede oculto. -->
@@ -46,12 +46,10 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-          <li class="nav-item"><a class="nav-link" href="#biografia">Biografía</a></li>
-          <li class="nav-item"><a class="nav-link" href="#discografia">Discografía</a></li>
-          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
-          <li class="nav-item"><a class="nav-link" href="#videos">En vivo</a></li>
           <li class="nav-item"><a class="nav-link" href="trayectoria.html">Trayectoria</a></li>
           <li class="nav-item"><a class="nav-link" href="premios.html">Premios</a></li>
+          <li class="nav-item"><a class="nav-link" href="merchandising.html">Merchandising</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
           <li class="nav-item"><a class="nav-link nav-cta" href="https://open.spotify.com/search/David%20Guetta" target="_blank" rel="noopener noreferrer">Escuchar</a></li>
         </ul>
       </div>
@@ -61,7 +59,9 @@
   <main id="contenido">
     <!-- PORTADA -->
     <header class="hero" id="inicio">
-      <img class="hero-photo" src="img/hero/guetta-hero.webp" alt="David Guetta con los brazos en alto frente al público, en la cabina de DJ" width="1600" height="1067" fetchpriority="high">
+      <img class="hero-photo" src="img/hero/guetta-hero.webp"
+        srcset="img/hero/guetta-hero-960.webp 960w, img/hero/guetta-hero-1440.webp 1440w, img/hero/guetta-hero.webp 1777w" sizes="100vw"
+        alt="David Guetta con chaqueta naranja y los brazos abiertos entre humo y luces del escenario" width="1777" height="999" fetchpriority="high">
       <div class="container hero-content">
         <h1 class="hero-title">
           <span class="hero-line-1">David</span>
@@ -234,56 +234,31 @@
             <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="3" aria-label="Foto 4"></button>
             <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="4" aria-label="Foto 5"></button>
             <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="5" aria-label="Foto 6"></button>
-            <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="6" aria-label="Foto 7"></button>
-            <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="7" aria-label="Foto 8"></button>
-            <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="8" aria-label="Foto 9"></button>
-            <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="9" aria-label="Foto 10"></button>
-            <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="10" aria-label="Foto 11"></button>
           </div>
           <div class="carousel-inner">
             <figure class="carousel-item active">
-              <img src="img/galeria/ultra-chispas.webp" alt="Guetta en la cabina entre columnas de chispas en el festival Ultra">
-              <figcaption><span>01 / 11</span>Guetta en la cabina entre columnas de chispas en el festival Ultra</figcaption>
+              <img src="img/galeria/cabina-morada.webp" srcset="img/galeria/cabina-morada-640.webp 640w, img/galeria/cabina-morada.webp 1060w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta mezclando en la cabina bajo luces moradas, rodeado de su equipo">
+              <figcaption><span>01 / 06</span>Guetta mezclando en la cabina bajo luces moradas, rodeado de su equipo</figcaption>
             </figure>
             <figure class="carousel-item">
-              <img style="--focus: center 40%" src="img/galeria/escenario-azul.webp" alt="Guetta de pie sobre la cabina en un escenario iluminado de azul">
-              <figcaption><span>02 / 11</span>Guetta de pie sobre la cabina en un escenario iluminado de azul</figcaption>
+              <img src="img/galeria/escenario-selva.webp" srcset="img/galeria/escenario-selva-640.webp 640w, img/galeria/escenario-selva.webp 1023w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta con los brazos en alto en un escenario de luces turquesa y vegetación">
+              <figcaption><span>02 / 06</span>Guetta con los brazos en alto en un escenario de luces turquesa y vegetación</figcaption>
             </figure>
             <figure class="carousel-item">
-              <img src="img/galeria/frente-al-publico.webp" alt="Guetta sonríe con los brazos abiertos frente a una multitud en un festival">
-              <figcaption><span>03 / 11</span>Guetta sonríe con los brazos abiertos frente a una multitud en un festival</figcaption>
+              <img src="img/galeria/confeti-cabina.webp" srcset="img/galeria/confeti-cabina-640.webp 640w, img/galeria/confeti-cabina.webp 960w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta en los platos mientras cae una lluvia de confeti rojo sobre el escenario">
+              <figcaption><span>03 / 06</span>Guetta en los platos mientras cae una lluvia de confeti rojo sobre el escenario</figcaption>
             </figure>
             <figure class="carousel-item">
-              <img src="img/galeria/brazos-arriba.webp" alt="Guetta con camiseta blanca y los brazos en alto frente a una pantalla">
-              <figcaption><span>04 / 11</span>Guetta con camiseta blanca y los brazos en alto frente a una pantalla</figcaption>
+              <img src="img/galeria/camisa-verde.webp" srcset="img/galeria/camisa-verde-640.webp 640w, img/galeria/camisa-verde.webp 1200w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta con camisa verde levanta el brazo frente a luces rojas y azules">
+              <figcaption><span>04 / 06</span>Guetta con camisa verde levanta el brazo frente a luces rojas y azules</figcaption>
             </figure>
             <figure class="carousel-item">
-              <img src="img/galeria/monolito-fuego.webp" alt="Escenario con un gran monolito y columnas de fuego ante el público">
-              <figcaption><span>05 / 11</span>Escenario con un gran monolito y columnas de fuego ante el público</figcaption>
+              <img src="img/galeria/luces-rojas-cabina.webp" srcset="img/galeria/luces-rojas-cabina-640.webp 640w, img/galeria/luces-rojas-cabina.webp 1280w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta celebra con los brazos arriba en una cabina bañada de luz roja">
+              <figcaption><span>05 / 06</span>Guetta celebra con los brazos arriba en una cabina bañada de luz roja</figcaption>
             </figure>
             <figure class="carousel-item">
-              <img src="img/galeria/luces-rojas.webp" alt="Guetta señala hacia arriba bajo luces rojas y moradas">
-              <figcaption><span>06 / 11</span>Guetta señala hacia arriba bajo luces rojas y moradas</figcaption>
-            </figure>
-            <figure class="carousel-item">
-              <img src="img/galeria/cabina-noche.webp" alt="Guetta mezclando de noche ante un estadio iluminado de morado">
-              <figcaption><span>07 / 11</span>Guetta mezclando de noche ante un estadio iluminado de morado</figcaption>
-            </figure>
-            <figure class="carousel-item">
-              <img src="img/galeria/escenario-turquesa.webp" alt="Guetta con los brazos abiertos frente a una pantalla turquesa">
-              <figcaption><span>08 / 11</span>Guetta con los brazos abiertos frente a una pantalla turquesa</figcaption>
-            </figure>
-            <figure class="carousel-item">
-              <img src="img/galeria/lima-2025.webp" alt="Guetta señala al cielo entre humo y luces en su show de Lima 2025">
-              <figcaption><span>09 / 11</span>Guetta señala al cielo entre humo y luces en su show de Lima 2025</figcaption>
-            </figure>
-            <figure class="carousel-item">
-              <img src="img/galeria/chaqueta-cuero.webp" alt="Guetta con chaqueta de cuero celebrando ante luces azules">
-              <figcaption><span>10 / 11</span>Guetta con chaqueta de cuero celebrando ante luces azules</figcaption>
-            </figure>
-            <figure class="carousel-item">
-              <img src="img/galeria/humo-escenario.webp" alt="Guetta con los brazos extendidos entre humo y luces cálidas">
-              <figcaption><span>11 / 11</span>Guetta con los brazos extendidos entre humo y luces cálidas</figcaption>
+              <img src="img/galeria/tomorrowland-cabina.webp" srcset="img/galeria/tomorrowland-cabina-640.webp 640w, img/galeria/tomorrowland-cabina.webp 1280w" sizes="(min-width: 1400px) 1296px, 100vw" alt="Guetta saluda al público desde la cabina del escenario de Tomorrowland">
+              <figcaption><span>06 / 06</span>Guetta saluda al público desde la cabina del escenario de Tomorrowland</figcaption>
             </figure>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
@@ -361,6 +336,13 @@
           <img class="footer-logo" src="img/brand/logo.webp" alt="Logo de David Guetta" width="400" height="400" loading="lazy">
           <p class="footer-tagline">David Guetta — The sound of a generation</p>
           <p class="footer-note">Página informativa de carácter académico y no oficial. Para información actualizada sobre lanzamientos, fechas y reconocimientos, consulta los canales oficiales del artista.</p>
+          <nav class="footer-nav" aria-label="Páginas del sitio">
+            <a href="index.html" aria-current="page">Inicio</a>
+            <a href="trayectoria.html">Trayectoria</a>
+            <a href="premios.html">Premios</a>
+            <a href="merchandising.html">Merchandising</a>
+            <a href="contacto.html">Contacto</a>
+          </nav>
         </div>
         <div class="col-md-7">
           <h2 class="footer-heading">Fuentes de consulta</h2>
@@ -379,6 +361,6 @@
 
   <!-- Bootstrap JavaScript: menú responsive y carrusel -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

@@ -5,7 +5,8 @@
    2. Galería: carrusel de Bootstrap; aquí solo se predecodifican sus fotos.
    3. Menú móvil: se cierra al elegir una sección.
    4. Efectos de scroll: barra de progreso, navegación de vidrio,
-      portada con parallax, línea de tiempo y entrada en foco.
+      portada con parallax, línea de tiempo, entrada en foco y
+      cortina sobre las fotos.
    ========================================================== */
 (function () {
   'use strict';
@@ -171,8 +172,12 @@
       '.facts-row > div', '.section-title', '.section-intro', '.lead-copy', '.body-copy',
       '.page-intro', '.portrait', '.profile', '#discografia .row > .col', '.songs li', '.collabs',
       '.video-stage', '.video-caption', '.playlist li', '.styles-list > div',
-      '.awards-grid figure', '.photo-carousel', '.trivia li', '.listen-panel', '.site-footer .row > div'
+      '.awards-grid figure', '.photo-carousel', '.trivia li', '.listen-panel', '.site-footer .row > div',
+      '.merch-intro .body-copy', '.product', '.merch-photo', '.merch-claim-title span', '.merch-claim-sign',
+      '.map-frame', '.map-actions', '.contact-heading', '.route-list li', '.contact-card'
     ].join(',');
+    // Estas figuras se descubren con una cortina en lugar del desenfoque
+    var maskSelector = '.portrait, .awards-grid figure, .merch-photo, .map-frame';
     var perParent = new Map();
 
     var observer = new IntersectionObserver(function (entries) {
@@ -190,7 +195,7 @@
       var index = perParent.get(el.parentElement) || 0;
       perParent.set(el.parentElement, index + 1);
       el.style.setProperty('--d', Math.min(index, 6) * 80 + 'ms');
-      el.setAttribute('data-reveal', '');
+      el.setAttribute('data-reveal', el.matches(maskSelector) ? 'mask' : '');
       // Al terminar, quitamos el retraso para que no afecte a otros efectos
       el.addEventListener('transitionend', function () { el.style.removeProperty('--d'); }, { once: true });
       observer.observe(el);
